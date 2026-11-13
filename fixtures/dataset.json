@@ -1,0 +1,140 @@
+{
+  "generation": "domain-6-v1",
+  "tables": {
+    "cells": [
+      {
+        "cell_id": "a",
+        "form_id": "f1",
+        "scope_id": "v1",
+        "metric": "people",
+        "value": 20,
+        "unit": "person",
+        "tolerance": 0,
+        "source_ref": "source-a"
+      },
+      {
+        "cell_id": "b",
+        "form_id": "f2",
+        "scope_id": "v2",
+        "metric": "people",
+        "value": 30,
+        "unit": "person",
+        "tolerance": 0,
+        "source_ref": "source-b"
+      },
+      {
+        "cell_id": "ab",
+        "form_id": "f3",
+        "scope_id": "town",
+        "metric": "people",
+        "value": 55,
+        "unit": "person",
+        "tolerance": 0,
+        "source_ref": "source-ab"
+      },
+      {
+        "cell_id": "shelter",
+        "form_id": "f3",
+        "scope_id": "town",
+        "metric": "people",
+        "value": 45,
+        "unit": "person",
+        "tolerance": 0,
+        "source_ref": "source-shelter"
+      },
+      {
+        "cell_id": "home",
+        "form_id": "f3",
+        "scope_id": "town",
+        "metric": "people",
+        "value": 8,
+        "unit": "person",
+        "tolerance": 0,
+        "source_ref": "source-home"
+      },
+      {
+        "cell_id": "unknown",
+        "form_id": "f4",
+        "scope_id": "v3",
+        "metric": "people",
+        "value": null,
+        "unit": "person",
+        "tolerance": 0,
+        "source_ref": "source-unknown"
+      }
+    ],
+    "constraints": [
+      {
+        "constraint_id": "sum",
+        "terms": {
+          "a": 1,
+          "b": 1,
+          "ab": -1
+        },
+        "rhs": 0,
+        "tolerance": 0,
+        "description": "村合计与乡镇一致"
+      },
+      {
+        "constraint_id": "states",
+        "terms": {
+          "shelter": 1,
+          "home": 1,
+          "ab": -1
+        },
+        "rhs": 0,
+        "tolerance": 1,
+        "description": "已确认状态与总数一致"
+      },
+      {
+        "constraint_id": "missing",
+        "terms": {
+          "unknown": 1,
+          "a": -1
+        },
+        "rhs": 0,
+        "tolerance": 0,
+        "description": "缺报状态示例"
+      }
+    ],
+    "forms": [
+      {
+        "form_id": "f1",
+        "revision": 1,
+        "supersedes": null,
+        "scope_members": [
+          "v1"
+        ]
+      },
+      {
+        "form_id": "f2",
+        "revision": 1,
+        "supersedes": null,
+        "scope_members": [
+          "v2"
+        ]
+      },
+      {
+        "form_id": "f3",
+        "revision": 1,
+        "supersedes": null,
+        "scope_members": [
+          "v1",
+          "v2"
+        ]
+      },
+      {
+        "form_id": "f4",
+        "revision": 1,
+        "supersedes": null,
+        "scope_members": [
+          "v3"
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "kind": "本地合成领域资料",
+    "cutoff": "2025-09-09T00:00:00+00:00"
+  }
+}

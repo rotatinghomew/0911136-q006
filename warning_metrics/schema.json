@@ -1,0 +1,40 @@
+{
+  "cells": {
+    "keys": [
+      "cell_id"
+    ],
+    "columns": [
+      "cell_id",
+      "form_id",
+      "scope_id",
+      "metric",
+      "value",
+      "unit",
+      "tolerance",
+      "source_ref"
+    ]
+  },
+  "constraints": {
+    "keys": [
+      "constraint_id"
+    ],
+    "columns": [
+      "constraint_id",
+      "terms",
+      "rhs",
+      "tolerance",
+      "description"
+    ]
+  },
+  "forms": {
+    "keys": [
+      "form_id"
+    ],
+    "columns": [
+      "form_id",
+      "revision",
+      "supersedes",
+      "scope_members"
+    ]
+  }
+}
