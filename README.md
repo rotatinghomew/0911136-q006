@@ -16,6 +16,16 @@ python3 -m warning_metrics.runner --output /tmp/warning_metrics-summary.json
 
 当前能力是源码 `analysis.py` 定义的摘要，不会自动给出其他统计推断。输出中的 scope 说明边界，sources 记录资料依据。
 
+## 统计口径一致性诊断
+
+简报发出前的人工核对可加 `--diagnosis`，在现行摘要之外追加一致性诊断（只读源表，不修改上报数值、不生成平衡替代表）：
+
+```sh
+python3 -m warning_metrics.runner --diagnosis --output /tmp/warning_metrics-diagnosis.json
+```
+
+诊断把跨表线性约束与误差带、表单 `scope_members` 的上下级/重叠范围、`supersedes` 修订链与 `source_ref` 组合起来，输出能解释矛盾的最小候选记录集合、证据与修正建议。多个同等合理解释全部保留、保留歧义；缺报（null）按未知不按零；person 与 household 分开诊断、不做人口/户数相除式认定；重复上报与局部修订可追溯到源单。放行由复核人员看证据后决定，字段与口径边界见 `docs/data-contract.md`。
+
 ## 分开运行供数与应用
 
 ```sh

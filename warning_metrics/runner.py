@@ -6,16 +6,19 @@ from pathlib import Path
 from http.server import ThreadingHTTPServer
 
 from .analysis import summarize
+from .diagnosis import diagnose
 from .datasource import SourceClient
 from .reports import package_report, save_report
 from .service import handler_for, load_repository, serve
 
 
 def main():
-    parser = argparse.ArgumentParser(description="领域资料摘要")
+    parser = argparse.ArgumentParser(description="领域资料摘要与统计口径一致性诊断")
     parser.add_argument("--dataset", default="fixtures/dataset.json")
     parser.add_argument("--source-url")
     parser.add_argument("--output", default="/tmp/domain-summary.json")
+    parser.add_argument("--diagnosis", action="store_true",
+                        help="在现行摘要之外追加一致性诊断（只读源表，不修改上报数值）")
     parser.add_argument("--serve", action="store_true")
     parser.add_argument("--port", type=int, default=8765)
     arguments = parser.parse_args()
@@ -33,7 +36,10 @@ def main():
     else:
         with serve(load_repository(arguments.dataset, schema_path)) as base_url:
             snapshot = SourceClient(base_url).read()
-    report = package_report(snapshot, summarize(snapshot.tables))
+    summary = summarize(snapshot.tables)
+    if arguments.diagnosis:
+        summary = {"current_summary": summary, "consistency_diagnosis": diagnose(snapshot.tables)}
+    report = package_report(snapshot, summary)
     save_report(arguments.output, report)
     print(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False))
 

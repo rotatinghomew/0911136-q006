@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+tests/test_application.py
+tests/test_diagnosis.py
+tests/test_domain.py
+warning_metrics/__init__.py
+warning_metrics/analysis.py
+warning_metrics/datasource.py
+warning_metrics/diagnosis.py
+warning_metrics/reports.py
+warning_metrics/runner.py
+warning_metrics/schema.json
+warning_metrics/service.py
+warning_metrics.egg-info/PKG-INFO
+warning_metrics.egg-info/SOURCES.txt
+warning_metrics.egg-info/dependency_links.txt
+warning_metrics.egg-info/top_level.txt
